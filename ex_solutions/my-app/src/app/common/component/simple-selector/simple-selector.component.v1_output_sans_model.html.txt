@@ -1,0 +1,8 @@
+<div class="my-selector">
+    <h4>{{title()}}</h4>
+    <ul>
+        @for(c of values(); track c){
+        <li [class.selected]="c==chooseValue" (click)="onInternalChoice(c)">{{c}}</li>
+        }
+    </ul>
+</div>

@@ -1,0 +1,19 @@
+import { Component, input, output } from '@angular/core';
+
+@Component({
+  selector: 'app-simple-selector',
+  imports: [],
+  templateUrl: './simple-selector.component.html',
+  styleUrl: './simple-selector.component.scss',
+})
+export class SimpleSelectorComponent {
+   title = input("title");
+   values = input<string[]>([]);
+   chooseValue = "";
+   choix=output<string>();
+
+   onInternalChoice(choice : string){
+     this.chooseValue = choice;
+     this.choix.emit(this.chooseValue);
+   }
+}

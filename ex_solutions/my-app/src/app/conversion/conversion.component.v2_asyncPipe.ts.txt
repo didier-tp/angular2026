@@ -1,0 +1,65 @@
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { Devise } from '../common/data/devise';
+import { DeviseService } from '../common/service/devise.service';
+import { FormsModule } from '@angular/forms';
+import { AsyncPipe } from '@angular/common';
+import { catchError, Observable, tap, throwError } from 'rxjs';
+
+@Component({
+  selector: 'app-conversion',
+  imports: [FormsModule,AsyncPipe],
+  templateUrl: './conversion.component.html',
+  styleUrl: './conversion.component.scss',
+})
+export class ConversionComponent {
+  montant: number = 0;
+  codeDeviseSource: string = "?";
+  codeDeviseCible: string = "?";
+  montantConverti: number = 0;
+
+  message=""
+
+  listeDevises : Devise[] = []; //à choisir dans liste déroulante.
+
+  private _deviseService =inject(DeviseService);
+  private changeDetectorRef = inject(ChangeDetectorRef);
+
+  montantConvertiObservable! : Observable<number>
+
+  onConvertir(){
+        this.montantConvertiObservable = 
+        this._deviseService.convertir$(this.montant,
+                                       this.codeDeviseSource,
+                                        this.codeDeviseCible)
+                              .pipe(tap((resWithoutErr)=>{this.message=""}),
+                                     catchError((err)=>this.handleError(err)));
+    //à afficher coté .html via {{ montantConvertiObservable | async }}
+    //ça nécessite imports:[....,AsyncPipe]e non bloquant et réponse ultérieure via callback
+  }
+
+  initListeDevises(tabDevises : Devise[]){
+    this.listeDevises = tabDevises;
+    if(tabDevises && tabDevises.length > 0){
+      this.codeDeviseSource = tabDevises[0].code; //valeur par défaut
+      this.codeDeviseCible = tabDevises[0].code; //valeur par défaut
+    }
+    console.log("initListeDevises: listeDevises=" +JSON.stringify(this.listeDevises) 
+    + ` codeDeviseSource=${this.codeDeviseSource} codeDeviseCible=${this.codeDeviseCible}` );
+    this.changeDetectorRef.markForCheck();//to refresh GUI without signal in ZoneLess mode (defaut mode since angular 21)
+  }
+
+  ngOnInit(){
+    this._deviseService.getAllDevises$()
+         .subscribe({
+            next: (tabDev : Devise[])=>{ this.initListeDevises(tabDev); },
+            error: (err) => { console.log("error:"+err)}
+         });
+  }
+
+  private handleError(error: any): Observable<never> {
+    this.message="erreur de conversion:" + error; //ou mieux 
+    console.log(this.message);
+    //return throwError(()=> new Error('Error ...'));
+    return throwError(()=> error);
+  }
+}

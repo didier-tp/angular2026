@@ -1,0 +1,44 @@
+<p>basic works!</p>
+<!--
+<app-calculatrice></app-calculatrice>
+<app-tva></app-tva>
+-->
+
+<app-toggle-panel title="calculatrice">
+     <app-calculatrice></app-calculatrice>
+</app-toggle-panel>
+
+<app-toggle-panel title="calcul tva">
+    <app-tva></app-tva>
+</app-toggle-panel>
+
+<!--
+
+<mat-tab-group>
+    <mat-tab label="calculatrice">
+          <app-calculatrice></app-calculatrice>
+    </mat-tab>
+    <mat-tab label="calcul tva">
+         <app-tva></app-tva>
+    </mat-tab>
+</mat-tab-group>
+
+-->
+
+<hr/>
+
+<!-- v1 avec ouput() sans model() -->
+<!--
+<app-simple-selector 
+   title="choix couleur" 
+   [values]="[ 'red' ,'green','blue' ]"
+   (choix)="onChoixCouleur($event)">
+</app-simple-selector> 
+-->
+<app-simple-selector 
+   title="choix couleur" 
+   [values]="[ 'red' ,'green','blue' ]"
+   [(choix)]="couleurChoisie">
+</app-simple-selector> 
+<br/>
+couleurChoisie = {{couleurChoisie}}

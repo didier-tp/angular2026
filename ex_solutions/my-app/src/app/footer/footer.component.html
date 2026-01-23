@@ -1,0 +1,7 @@
+<p class="footer">footer -   couleurFondPreferee:
+    <select [(ngModel)]="preferencesService.couleurFondPreferee" >
+       @for(c of listeCouleurs; track c){
+           <option [ngValue]="c">{{c}}</option>
+        }
+    </select>
+</p>

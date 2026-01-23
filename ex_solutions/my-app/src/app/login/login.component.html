@@ -1,0 +1,26 @@
+<h3>login</h3>
+<form #formLogin="ngForm">
+    <div class="f-form-group-wrap">
+        <label class="f-align">username:</label>
+        <div class="f-align">
+            <input [(ngModel)]="login.username" name="username" required pattern="^[a-zA-Z].+" class="f-max-size" />
+        </div>
+    </div>
+
+    <div class="f-form-group-wrap">
+        <label class="f-align">password:</label>
+        <div class="f-align">
+            <input [(ngModel)]="login.password" name="password" required minlength="3" class="f-max-size" />
+        </div>
+    </div>
+
+    <div class="f-form-group-wrap">
+        <label class="f-align">roles:</label>
+        <div class="f-align">
+            <input [(ngModel)]="login.roles" name="roles" required class="f-max-size" />
+        </div>
+    </div>
+
+    <input type="button" value="login" [disabled]="!formLogin.form.valid" (click)="onLogin()" /> <br />
+    message: <span [style.color]="ok?'green':'red'">{{message}}</span>
+</form>

@@ -1,0 +1,60 @@
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { Devise } from '../common/data/devise';
+import { DeviseService } from '../common/service/devise.service';
+import { FormsModule } from '@angular/forms';
+
+@Component({
+  selector: 'app-conversion',
+  imports: [FormsModule],
+  templateUrl: './conversion.component.html',
+  styleUrl: './conversion.component.scss',
+})
+export class ConversionComponent {
+  montant: number = 0;
+  codeDeviseSource: string = "?";
+  codeDeviseCible: string = "?";
+  montantConverti: number = 0;
+
+  listeDevises : Devise[] = []; //à choisir dans liste déroulante.
+
+  private _deviseService =inject(DeviseService);
+  private changeDetectorRef = inject(ChangeDetectorRef);
+
+  onConvertir(){
+        console.log(`debut de onConvertir: montant=${this.montant}  codeDeviseSource=${this.codeDeviseSource} codeDeviseCible=${this.codeDeviseCible}`)
+        this._deviseService.convertir$(this.montant,
+                                      this.codeDeviseSource,
+                                      this.codeDeviseCible)
+                .subscribe({
+                    next : (res :number) => { this.montantConverti = res;
+                                      console.log(`resultat obtenu en différé: montantConverti=${this.montantConverti} `);
+                                      this.changeDetectorRef.markForCheck(); //to refresh GUI without signal in ZoneLess mode (defaut mode since angular 21)
+                                  } ,
+                    error : (err) => { console.log("error:"+err)}
+                   });
+        console.log("suite immédiate (sans attente) de onConvertir");
+        //Attention : sur cette ligne , le résultat n'est à ce stade pas encore connu
+        //car appel asynchrone non bloquant et réponse ultérieure via callback
+  }
+
+  initListeDevises(tabDevises : Devise[]){
+    this.listeDevises = tabDevises;
+    if(tabDevises && tabDevises.length > 0){
+      this.codeDeviseSource = tabDevises[0].code; //valeur par défaut
+      this.codeDeviseCible = tabDevises[0].code; //valeur par défaut
+    }
+    console.log("initListeDevises: listeDevises=" +JSON.stringify(this.listeDevises) 
+    + ` codeDeviseSource=${this.codeDeviseSource} codeDeviseCible=${this.codeDeviseCible}` );
+    this.changeDetectorRef.markForCheck();//to refresh GUI without signal in ZoneLess mode (defaut mode since angular 21)
+  }
+
+  //ngOnInit() est automatiquement appelée par le framework après le constructeur
+  //et après la prise en compte des injections et des éventuels @Input
+  ngOnInit(){
+    this._deviseService.getAllDevises$()
+         .subscribe({
+            next: (tabDev : Devise[])=>{ this.initListeDevises(tabDev); },
+            error: (err) => { console.log("error:"+err)}
+         });
+  }
+}

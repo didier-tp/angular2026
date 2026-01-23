@@ -1,0 +1,56 @@
+<h3>reservation</h3>
+<form novalidate [formGroup]="resaForm">
+    <div class="f-form-group-wrap">
+        <label class="f-align" >firstName</label>
+        <div class="f-align">
+            <input type="text" class="f-max-size" formControlName="firstName" >
+        </div>
+        <div class="f-align smallError">{{myFieldErrorMessage('firstName')}}</div>
+    </div>
+
+    <div class="f-form-group-wrap">
+        <label class="f-align" >lastName</label>
+        <div class="f-align">
+           <input type="text" class="f-max-size" formControlName="lastName" >
+        </div>
+        <div class="f-align smallError">{{myFieldErrorMessage('lastName')}}</div>
+    </div>
+
+    <div class="f-form-group-wrap">
+        <label class="f-align" >telephone</label>
+        <div class="f-align">
+             <input type="email" class="f-max-size" formControlName="telephone" >
+        </div>
+        <div class="f-align smallError">{{myFieldErrorMessage('telephone')}}</div>
+      </div>
+
+    <div class="f-form-group-wrap">
+      <label class="f-align" >email</label>
+      <div class="f-align">
+           <input type="email" class="f-max-size" formControlName="email" >
+      </div>
+      <div class="f-align smallError">{{myFieldErrorMessage('email')}}</div>
+    </div>
+
+    <div class="f-form-group-wrap">
+        <label class="f-align" >date</label>
+        <div class="f-align">
+             <input type="text" class="f-max-size" formControlName="date" >
+        </div>
+        <div class="f-align smallError">{{myFieldErrorMessage('date')}}</div>
+      </div>
+
+      <div class="f-form-group-wrap">
+        <label class="f-align" >time</label>
+        <div class="f-align">
+             <input type="text" class="f-max-size" formControlName="time" >
+        </div>
+        <div class="f-align smallError">{{myFieldErrorMessage('time')}}</div>
+      </div>
+
+    <input type="button" value="reservation" (click)="onReservation()"
+           [disabled]="!resaForm.valid" />
+    
+</form>
+<hr/>
+{{message}}

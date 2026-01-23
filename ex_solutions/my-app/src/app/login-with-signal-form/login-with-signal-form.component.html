@@ -1,0 +1,33 @@
+<p>login-with-signal-form works!</p>
+<h3>login</h3>
+<form>
+    <div class="f-form-group-wrap">
+        <label class="f-align">username:</label>
+        <div class="f-align">
+            <input [formField]="loginForm.username" class="f-max-size" />
+        </div>
+    </div>
+
+    <div class="f-form-group-wrap">
+        <label class="f-align">password:</label>
+        <div class="f-align">
+            <input [formField]="loginForm.password"  class="f-max-size" />
+        </div>
+    </div>
+
+    <div class="f-form-group-wrap">
+        <label class="f-align">roles:</label>
+        <div class="f-align">
+            <input [formField]="loginForm.roles" class="f-max-size" />
+        </div>
+    </div>
+    <hr/>
+    <p>Hello {{ loginForm.username().value() }}!</p>
+    <p>Password length: {{ loginForm.password().value().length }}</p>
+    <hr/>
+    <input type="button" value="validate" [hidden]="loginForm().valid()"  (click)="onValidateLoginForm()" /> 
+    <input type="button" value="login" [disabled]="loginForm().invalid()" (click)="onLogin()" /> 
+</form>
+<hr/>
+ message: <span [style.color]="ok?'green':'red'">{{message}}</span>
+

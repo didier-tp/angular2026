@@ -1,0 +1,13 @@
+.my-card { margin-top: 0.1em; margin-bottom: 0.1em; }
+.my-card-header { border-top-left-radius: 0.3em; border-top-right-radius: 0.3em;
+padding: 0.1em; margin-bottom: 0px;}
+a { text-decoration: none;}
+.my-card-body {border: 0.1em solid blue; border-bottom-left-radius: 0.3em;
+border-bottom-right-radius: 0.3em; padding: 0.2em;}
+.my-bg-primary { background-color: blue;}
+.my-text-light { color : white;}
+.my-icon { color : blue; background-color: white; margin: 0.2em;
+padding-left: 0.2em; padding-right : 0.2em;
+min-width: 1em; font-weight: bold;}
+.my-collapse { display : none;}
+.my-show { display : block ;}

@@ -1,0 +1,12 @@
+<div class="my-card">
+<h4 class="my-card-header my-bg-primary">
+<a class="my-text-light" (click)="panelOpenState.set(!panelOpenState())" >
+<span class="my-icon" [style.display]="panelOpenState()?'none':'inline-block'">+</span>
+<span class="my-icon" [style.display]="panelOpenState()?'inline-block':'none'">-</span>{{title()}}
+</a>
+</h4>
+<div class="my-card-body my-collapse" [class.my-show]="panelOpenState()">
+<!-- <div class="my-card-body" [hidden]="panelOpenState()"> -->
+<ng-content></ng-content> <!-- remplacé par le contenu imbriqué -->
+</div>
+</div>
