@@ -6,7 +6,7 @@ import { Reservation } from '../common/data/reservation';
   selector: 'app-reservation',
   imports:[ReactiveFormsModule],
   templateUrl: './reservation.component.html',
-  styleUrl: './reservation.component.scss'
+  styleUrl: './reservation.component.css'
 })
 export class ReservationComponent {
 

@@ -1,5 +1,7 @@
 <p>login-with-signal-form works!</p>
 <h3>login</h3>
+<!-- old V1 avec message global et bouton validate -->
+<!--
 <form>
     <div class="f-form-group-wrap">
         <label class="f-align">username:</label>
@@ -22,12 +24,110 @@
         </div>
     </div>
     <hr/>
+    
     <p>Hello {{ loginForm.username().value() }}!</p>
     <p>Password length: {{ loginForm.password().value().length }}</p>
-    <hr/>
+    <hr/> 
     <input type="button" value="validate" [hidden]="loginForm().valid()"  (click)="onValidateLoginForm()" /> 
     <input type="button" value="login" [disabled]="loginForm().invalid()" (click)="onLogin()" /> 
 </form>
 <hr/>
- message: <span [style.color]="ok?'green':'red'">{{message}}</span>
+ message: <span [style.color]="ok?'green':'red'">{{message()}}</span>
+-->
 
+<!-- old V2 avec styles basés sur flexBox -->
+ <!--
+<form>
+    <div class="f-form-group-wrap">
+        <label class="f-align">username:</label>
+        <div class="f-align">
+            <input [formField]="loginForm.username" class="f-max-size" [ngClass]="classForLoginField('username')" />
+        </div>
+        <span class="text-red-600">{{usernameError()}}</span>
+    </div>
+
+    <div class="f-form-group-wrap">
+        <label class="f-align">password:</label>
+        <div class="f-align">
+            <input [formField]="loginForm.password"  class="f-max-size" [ngClass]="classForLoginField('password')"/>
+        </div>
+         <span class="text-red-600">{{passwordError()}}</span>
+    </div>
+
+    <div class="f-form-group-wrap">
+        <label class="f-align">roles:</label>
+        <div class="f-align">
+            <input [formField]="loginForm.roles" class="f-max-size" />
+        </div>
+    </div>
+    <hr/>
+    <input type="button" value="login" [disabled]="loginForm().invalid()" (click)="onLogin()" /> 
+</form>
+<hr/>
+ message: <span [style.color]="ok?'green':'red'">{{message()}}</span>
+-->
+
+<!-- old V3 avec styles tailwind css grid -->
+  <form novalidate class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div>
+        <label class="block text-sm">username:</label>
+        <input [formField]="loginForm.username" class="w-full" [ngClass]="classForLoginField('username')" />
+        <span class="text-red-600">{{usernameError()}}</span>
+    </div>
+
+    <div>
+        <label class="block text-sm">password:</label>
+        <input [formField]="loginForm.password"  class="w-full" [ngClass]="classForLoginField('password')"/>
+        <span class="text-red-600">{{passwordError()}}</span>
+    </div>
+
+    <div>
+        <label class="block text-sm">roles:</label>
+        <input [formField]="loginForm.roles" class="w-full" [ngClass]="classForLoginField('roles')"/>
+         <span class="text-red-600"></span>
+    </div>
+</form>
+    <hr/>
+    <input type="button" value="login" [disabled]="loginForm().invalid()" (click)="onLogin()" /> 
+
+<hr/>
+ message: <span [style.color]="ok?'green':'red'">{{message()}}</span>
+
+ <hr/>
+    <input type="button" value="logOut" (click)="onLogout()" /> <br />
+
+    <!-- autre exemple de signalForm sur person -->
+<!--
+ <hr/>
+ <h2> signalForm (person) in responsive tailwind css grid </h2>
+ <form novalidate class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div>
+        <label class="block text-sm">firstname:</label>
+        <input [formField]="personForm.firstname" [ngClass]="classForField('firstname')" class="w-full" />
+        <span class="text-red-600">{{firstnameError()}}</span>
+    </div>
+
+    <div>
+        <label class="block text-sm">lastname:</label>
+        <input [formField]="personForm.lastname" [ngClass]="classForField('lastname')" class="w-full" />
+        <span class="text-red-600">{{lastnameError()}}</span>
+    </div>
+
+    <div>
+        <label class="block text-sm">email:</label>
+        <input [formField]="personForm.email" [ngClass]="classForField('email')" class="w-full" />
+        <span class="text-red-600">{{emailError()}}</span>
+    </div>
+
+     <div>
+        <label class="block text-sm">age:</label>
+        <input  type="number" [formField]="personForm.age" [ngClass]="classForField('age')" class="w-full" />
+        <span class="text-red-600">{{ageError()}}</span>
+    </div> 
+</form>
+ <hr/>  
+    person : <span [style.color]="okPerson?'green':'red'">{{ personModel() | json }}</span> <br/>
+    <input type="button" value="login" [disabled]="personForm().invalid()" (click)="onPerson()" /> <br/>
+    message: <span [style.color]="okPerson?'green':'red'">{{messagePerson}}</span> 
+    
+-->

@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-conversion',
   imports: [FormsModule],
   templateUrl: './conversion.component.html',
-  styleUrl: './conversion.component.scss',
+  styleUrl: './conversion.component.css',
 })
 export class ConversionComponent {
   montant: number = 0;

@@ -3,5 +3,10 @@
        @for(c of listeCouleurs; track c){
            <option [ngValue]="c">{{c}}</option>
         }
-    </select>
+    </select> &nbsp; 
+    @if(sessionService.sConnected()){
+        <span class="text-green-700">userInSession : {{sessionService.sUserInSession()|json}}</span>
+    }@else{
+        <span class="text-red-600">user not connected (anonymous session)</span>
+    }
 </p>

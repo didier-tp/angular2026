@@ -1,0 +1,56 @@
+<div class="f-row-wrap">
+    <div class="f-item-auto" >
+      <div class="my-card">
+       <div class="my-card-header my-text-white my-bg-primary">Liste des devises (selon serveur)</div>
+       <div class="my-card-body">
+       <table>
+           <tr><th>code</th><th>name</th><th>change</th></tr>
+           @for(d of tabDevises ; track d.code){
+           <tr (click)="onSelectDevise(d)" [class.selected]="d==selectedDevise">
+              <td>{{d.code}}</td><td>{{d.name}}</td><td>{{d.change}}</td>
+           </tr>
+           }
+       </table> <!-- end of table -->
+      
+       </div> <!-- end of my-card-body -->
+      </div><!-- end of my-card -->
+     </div> <!-- end of f-item-auto -->
+     <div class="f-item-auto" >
+        <span style="display:inline-block; max-width:300px;font-size:small">message: <b>{{sMessage()}}</b></span>
+       <div class="my-card">
+       <div class="my-card-header my-text-white my-bg-primary">devise selectionnée ({{sMode()}})</div>
+       <div class="my-card-body">
+       <form #formDevise="ngForm">   <!-- A COMPLETER/AMELIORER EN TP -->
+           <div class="f-form-group-wrap">
+           <label class="f-align">code:</label>
+           <div class="f-align">
+               <input name="code" class="f-max-size"   required minlength="3" />
+           </div>
+       </div> <!-- end of f-form-group-wrap -->
+       <div class="f-form-group-wrap">
+               <label class="f-align">name:</label>
+               <div class="f-align">
+                   <input name="nom" class="f-max-size"   required />
+               </div>
+           </div> <!-- end of f-form-group-wrap -->
+           <div class="f-form-group-wrap">
+               <label class="f-align">change:</label>
+               <div class="f-align">
+               <input name="change" type="number" class="f-max-size" [(ngModel)]="deviseTemp.change"  required />
+               </div>
+           </div><!-- end of f-form-group-wrap -->
+           <div class="f-form-group-wrap">
+            <label class="f-align"></label>
+               <div class="f-align">
+                    <button (click)="onUpdate()" class="btn-primary"  >
+                        update </button> &nbsp;
+                    <button  class="btn-primary"> new </button>  &nbsp;
+                    <button  class="btn-primary"> add </button> &nbsp;
+                    <button  class="btn-danger"> delete </button>
+               </div> 
+           </div><!-- end of f-form-group-wrap -->
+       </form><!-- end of form -->
+       </div> <!-- end of my-card-body -->
+      </div><!-- end of my-card -->
+     </div> <!-- end of f-item-auto -->
+   </div><!-- end of main row -->

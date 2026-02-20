@@ -1,0 +1,13 @@
+<table>
+    <thead><tr><th>code</th><th>nom</th><th>change</th></tr></thead>
+    <tbody>
+        @for(d of devises$ | async ; track  d.code){
+            <tr><td>{{d.code}}</td><td>{{d.name}}</td><td>{{d.change}}</td></tr>
+        }
+    </tbody>
+</table>
+<hr/>
+code devise a modifier: <input [(ngModel)]="codeToUpdate" /> (ex: JPY , GBP) <br/>
+nouveau change: <input [(ngModel)]="changeToUpdate" /> (ex: 0.9 , 1.1 ) <br/>
+<button (click)="onUpdate()">update devise</button>
+<hr/>{{message()}}

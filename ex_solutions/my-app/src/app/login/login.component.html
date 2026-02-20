@@ -22,5 +22,8 @@
     </div>
 
     <input type="button" value="login" [disabled]="!formLogin.form.valid" (click)="onLogin()" /> <br />
-    message: <span [style.color]="ok?'green':'red'">{{message}}</span>
+    message: <span [style.color]="ok?'green':'red'">{{message()}}</span>
+
+    <hr/>
+    <input type="button" value="logOut" (click)="onLogout()" /> <br />
 </form>

@@ -4,7 +4,7 @@ import { Component, input, model, output } from '@angular/core';
   selector: 'app-simple-selector',
   imports: [],
   templateUrl: './simple-selector.component.html',
-  styleUrl: './simple-selector.component.scss',
+  styleUrl: './simple-selector.component.css',
 })
 export class SimpleSelectorComponent {
    title = input("title");

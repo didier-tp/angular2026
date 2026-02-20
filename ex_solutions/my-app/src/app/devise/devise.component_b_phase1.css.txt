@@ -1,0 +1,59 @@
+input.ng-valid {
+    border-left: 5px solid #42A948; /* green */
+    }
+
+input.ng-invalid {
+    border-left: 5px solid #a94442; /* red */
+    }
+
+      
+    /*********************************************/
+
+    .smallError {
+       color: red;
+       font-size:small;
+      }
+
+    .f-form-group-wrap, .f-row-wrap {
+        display: flex;
+        flex-flow: row wrap;
+      }
+      
+      label.f-align {
+        width: 12em;
+        display: inline-block;
+        margin-left: 0.3em;
+        flex: 0 0 12em;
+      }
+      
+      .f-align {
+        margin-left: 0.3em;
+        margin-right: 0.2em;
+        flex: 1 1 auto;
+      }
+      
+      .f-max-size {
+        width: 98%;
+      }
+
+      /***************************/
+
+      .f-item-auto {
+        margin-left: 0.1em;
+        margin-right: 0.1em;
+        flex: 1 1 auto;
+      }
+
+      /********************/
+      .my-card { margin-top: 0.1em; margin-bottom: 0.1em; }
+  .my-card-header { border-top-left-radius: 0.3em; border-top-right-radius: 0.3em; 
+    padding: 0.1em; margin-bottom: 0px;}
+ 
+  .my-card-body {border: 0.1em solid blue; border-bottom-left-radius: 0.3em; 
+              border-bottom-right-radius: 0.3em;  padding: 0.2em;}
+  .my-bg-primary { background-color: blue;}
+  .my-text-white { color : white;}
+   /********************/
+th , td { border: 1px solid black;}
+/*******/
+.selected { color: blue; font-weight: bold;}

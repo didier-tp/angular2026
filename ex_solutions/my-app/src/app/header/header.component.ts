@@ -6,7 +6,7 @@ import { PreferencesService } from '../common/service/preferences.service';
   selector: 'app-header',
   imports: [RouterLink],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+  styleUrl: './header.component.css',
 })
 export class HeaderComponent {
    titre = input("titre")

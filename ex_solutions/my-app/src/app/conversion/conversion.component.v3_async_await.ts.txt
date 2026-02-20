@@ -9,7 +9,7 @@ import { catchError, firstValueFrom, Observable, tap, throwError } from 'rxjs';
   selector: 'app-conversion',
   imports: [FormsModule,AsyncPipe],
   templateUrl: './conversion.component.html',
-  styleUrl: './conversion.component.scss',
+  styleUrl: './conversion.component.css',
 })
 export class ConversionComponent {
   montant: number = 0;

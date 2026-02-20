@@ -1,0 +1,37 @@
+  <h3>css animations , angular control (start,stop)</h3>
+  <p>NB: old legacy @angular/animations (with trigger) is deprecated </p>
+  <p>use <b>animate.enter</b>="cssClassWithAnimation" and <b>animate.leave</b>="cssClassWithAnimation" instead</p>
+  <pre>
+    animate.enter triggers when elements are added to the DOM
+    animate.leave triggers when elements are removed from the DOM
+  </pre>
+  
+  @if (showMessage()) {
+      <div class="bg-red-400" animate.enter="slide-in" animate.leave="fade-out">
+       Angular css animations (enter: slide-in , leave: fade-out)
+      </div>
+    }
+    <button (click)="toggleShow()">Toggle showMessage</button>
+
+    <hr/>
+       secouer au survol: <img class="secouer_au_survol" src="favicon.ico" /> <br/>
+       <button (click)="onSecouerSurDemande()">secouer image sur demande</button> &nbsp;
+       @if(showHideImage()){
+           <img [animate.enter]="secouer_image_sur_demande" src="favicon.ico" />
+       }
+    <hr/>
+
+    <div class="animation-playground">
+      @if (showElement()) {
+        <div class="animated-box"
+             (animate.enter)="handleEnterAnimation($event)"
+             (animate.leave)="handleLeaveAnimation($event)">
+          <h3>Advanced Animation</h3>
+          <p>with GSAP extension/library</p>
+        </div>
+      }
+      
+      <button (click)="toggleElement()">
+        {{showElement() ? 'Hide' : 'Show'}} Element
+      </button>
+    </div>

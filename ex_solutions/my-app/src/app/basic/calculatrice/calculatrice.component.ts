@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-calculatrice',
   imports: [FormsModule],
   templateUrl: './calculatrice.component.html',
-  styleUrls: ['./calculatrice.component.scss']
+  styleUrls: ['./calculatrice.component.css']
 })
 export class CalculatriceComponent {
+
+   modeChoisi ="simple"; //ou "sophistiquee"
 
   a : number = 0;
   b : number = 0;
@@ -44,5 +47,10 @@ export class CalculatriceComponent {
     this.x=0; this.y=0;
   }
 
-  constructor() { }
+  constructor(route : ActivatedRoute) {
+    //NB:  { path: 'calculatrice/:mode', ... },
+    route.params.subscribe(
+      (params:Params)=>   { this.modeChoisi = params['mode'];}
+     ) ;
+   }
 }

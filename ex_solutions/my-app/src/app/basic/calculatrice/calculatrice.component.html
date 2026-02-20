@@ -4,17 +4,16 @@
      ou bien en nouveau mode ZoneLess (par défaut depuis angular 21)
      car pas de déclenchement asynchrone mais des actions DOM -->
 
-    <label>a :</label> <input type="number" [(ngModel)]="a" /> <br/>
-    <label>b :</label> <input type="number" [(ngModel)]="b" /> <br/>
+    <label>a :</label> <input type="number" [(ngModel)]="a" name="a" /> <br/>
+    <label>b :</label> <input type="number" [(ngModel)]="b" name="b" /> <br/>
     <label>operation :</label>
         <input type="button"  value="+" (click)="onCalculer('+')" /> 
         &nbsp; <input type="button"  value="-" (click)="onCalculer('-')" />
-        &nbsp; <input type="button"  value="*" (click)="onCalculer('*')" />
+        &nbsp; <input type="button"  value="*" (click)="onCalculer('*')" [hidden]="modeChoisi!='sophistiquee'" />
        <br/>
     <label>resultat:</label> 
     <span [style.font-weight]="res>0?'bold':'normal'"
-          [class.negatif]="res<0" >
-        {{res}}</span> <br/>
+          [class.negatif]="res<0" id="spanRes" >{{res}}</span> <br/>
     <input type="checkbox" [(ngModel)]="montrerHisto" /> voir l'historique des calculs<br/>
    @if(montrerHisto){
      <ul>

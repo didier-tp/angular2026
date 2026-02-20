@@ -4,7 +4,7 @@ import { Component, input, model } from '@angular/core';
   selector: 'app-toggle-panel',
   imports: [],
   templateUrl: './toggle-panel.component.html',
-  styleUrl: './toggle-panel.component.scss',
+  styleUrl: './toggle-panel.component.css',
 })
 export class TogglePanelComponent {
    panelOpenState=model(false); 

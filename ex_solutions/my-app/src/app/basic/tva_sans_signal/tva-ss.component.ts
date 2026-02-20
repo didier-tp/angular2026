@@ -7,7 +7,7 @@ import { ToFixedPipe } from '../../common/pipe/to-fixed-pipe';
   selector: 'app-tva-ss',
   imports: [FormsModule, DecimalPipe , ToFixedPipe],
   templateUrl: './tva-ss.component.html',
-  styleUrl: './tva-ss.component.scss',
+  styleUrl: './tva-ss.component.css',
 })
 //ancienne version V1 ou Ss (sans signal)
 export class TvaSsComponent {
@@ -21,6 +21,7 @@ listeTaux=[5,10,20];
   onCalculerTvaTtc(){
     this.tva=this.taux/100 * this.ht;
     this.ttc = this.tva + this.ht;
+    console.log(`onCalculerTvaTtc() ht=${this.ht} taux=${this.taux} tva=${this.tva} ttc=${this.ttc}`)
   }
   
   mapTauxCategorieProd= new Map<number,string[]>();
