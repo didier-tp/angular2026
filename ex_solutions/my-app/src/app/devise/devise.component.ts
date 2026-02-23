@@ -19,11 +19,11 @@ export class DeviseComponent implements OnInit {
     return JSON.parse(JSON.stringify(d));
   }
 
-  tabDevises : Devise[]=[];
+  sTabDevises = signal<Devise[]>([]);
 
   changeDetectorRef = inject(ChangeDetectorRef); //for this.changeDetectorRef.markForCheck();
 
-  selectedDevise : Devise | undefined = undefined;
+  sSelectedDevise = signal<Devise | undefined> (undefined);
 
   //[(ngModel)]="deviseTemp.code" , ....
   deviseTemp = new Devise();
@@ -36,17 +36,16 @@ export class DeviseComponent implements OnInit {
   constructor() {
     /*
     //V1 (sans backend), avec des valeurs simulées en mémoire
-    this.tabDevises.push(new Devise("EUR","Euro",1));
-    this.tabDevises.push(new Devise("USD","Dollar",1.1));
-    this.tabDevises.push(new Devise("GBP","Livre",0.9));
-    this.tabDevises.push(new Devise("JPY","Yen",120));
+    this.sTabDevises.set ( 
+      [ new Devise("EUR","Euro",1),   new Devise("USD","Dollar",1.1),
+        new Devise("GBP","Livre",0.9),   new Devise("JPY","Yen",120)]);
     */
    }
 
-   onRefresh() {
+  onRefresh() {
        this.deviseService.getAllDevises$()
        .subscribe(
-    		 { next: (allDevises)=>{ this.tabDevises=allDevises; this.changeDetectorRef.markForCheck(); } ,
+    		 { next: (allDevises)=>{ this.sTabDevises.set(allDevises);/* this.changeDetectorRef.markForCheck(); */} ,
     		  error: (err)=>{ this.sMessage.set(messageFromError(err,"devises load/refresh")); }
    		});
    }
@@ -57,34 +56,40 @@ export class DeviseComponent implements OnInit {
   }
 
   onSelectDevise(d : Devise){
-     this.selectedDevise=d;
+     this.sSelectedDevise.set(d);
      this.deviseTemp=this.cloneDevise(d);
      this.sMode.set("existingOne")
      this.sMessage.set("")
   }
 
- async onUpdate() {
+  async onUpdate() {
+    if(this.sSelectedDevise()==undefined) return;
     try {
       await firstValueFrom(this.deviseService.putDevise$(this.deviseTemp));
-      this.updateClientSide(this.deviseTemp) ; 
+      this.updateArrayAndSelectionWithSignal(this.deviseTemp) ; 
     } catch (err) {
       console.log(err);
       this.sMessage.set(messageFromEx(err,"devise update error"));
     }
   }
 
-  updateClientSide(updatedDevise:Devise){
-    if(this.selectedDevise==undefined) return;
-    this.selectedDevise.change = updatedDevise.change;
-    this.selectedDevise.name = updatedDevise.name;
-    this.selectedDevise.code = updatedDevise.code;
-    this.sMessage.set("devise mise à jour")
-  }
+
+  //NB: this sub function will be often called with d = this.deviseTemp 
+  updateArrayAndSelectionWithSignal(devise: Devise){
+    //1. find first item whose .id/.code is the d.code
+    let existingDevisesWithSearchedId = this.sTabDevises().filter(d => d.code == devise.code);//return a array or undefined
+    if(existingDevisesWithSearchedId){
+        let cDevise =  this.cloneDevise(devise);
+        this.sSelectedDevise.set(cDevise);//new selection
+        this.sTabDevises.set(this.sTabDevises().map( (d:Devise) => (d.code==devise.code)?cDevise : d) ); //replace new selected item
+    }
+}
+
 
   //à coder en TP:
   onNew(){
      this.deviseTemp = new Devise();
-     this.selectedDevise=undefined;
+     this.sSelectedDevise.set(undefined);
      this.sMode.set("newOne");
      this.sMessage.set("")
   }
@@ -98,16 +103,18 @@ export class DeviseComponent implements OnInit {
   }
 
   addClientSide(savedDevise:Devise){
-    this.tabDevises.push(savedDevise);
+    // this.sTabDevises().push(savedDevise); BAD CODE , change not detected after  mutable array upadate
+    this.sTabDevises.set([...this.sTabDevises(), this.cloneDevise(savedDevise)]);//using spread operator  , new array
     this.onNew();
     this.sMessage.set("devise ajoutée")
   }
 
-  async onDelete() {
-    if(this.selectedDevise==undefined) return;
+   async onDelete() {
+    let selectedDevise = this.sSelectedDevise();
+    if(selectedDevise==undefined) return;
     try {
-      await firstValueFrom(this.deviseService.deleteDeviseByCode$(this.selectedDevise.code));
-      this.deleteClientSide(this.selectedDevise) ; 
+      await firstValueFrom(this.deviseService.deleteDeviseByCode$(selectedDevise.code));
+      this.deleteClientSide(selectedDevise) ; 
     } catch (err) {
       console.log(err);
       this.sMessage.set(messageFromEx(err,"devise delete error"));
@@ -115,14 +122,13 @@ export class DeviseComponent implements OnInit {
   }
 
   deleteClientSide(deletedDevise:Devise){
-     if(deletedDevise!=undefined){
-        for(let i = 0;i<this.tabDevises.length;i++)
-          if(this.tabDevises[i]==deletedDevise){
-            this.tabDevises.splice(i,1); break;
-          }
+
+      if(deletedDevise!=undefined){
+        this.sTabDevises.set(this.sTabDevises().filter(d=>d.code != deletedDevise.code));
        this.onNew()
        this.sMessage.set("devise supprimée")
      }  
   } 
+
 
 }

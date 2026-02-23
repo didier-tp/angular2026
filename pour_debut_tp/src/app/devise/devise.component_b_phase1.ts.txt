@@ -14,11 +14,11 @@ export class DeviseComponent implements OnInit {
     return JSON.parse(JSON.stringify(d));
   }
 
-  tabDevises : Devise[]=[];
+  sTabDevises = signal<Devise[]>([]);
 
   changeDetectorRef = inject(ChangeDetectorRef); //for this.changeDetectorRef.markForCheck();
 
-  selectedDevise : Devise | undefined = undefined;
+  sSelectedDevise = signal<Devise | undefined> (undefined);
 
   //[(ngModel)]="deviseTemp.code" , ....
   deviseTemp = new Devise("?","?",0);
@@ -30,26 +30,34 @@ export class DeviseComponent implements OnInit {
 
   constructor() {
     //V1 (sans backend), avec des valeurs simulées en mémoire
-    this.tabDevises.push(new Devise("EUR","Euro",1));
-    this.tabDevises.push(new Devise("USD","Dollar",1.1));
-    this.tabDevises.push(new Devise("GBP","Livre",0.9));
-    this.tabDevises.push(new Devise("JPY","Yen",120));
+    this.sTabDevises.set ( 
+      [ new Devise("EUR","Euro",1),   new Devise("USD","Dollar",1.1),
+        new Devise("GBP","Livre",0.9),   new Devise("JPY","Yen",120)]);
    }
 
   ngOnInit(): void {
   }
 
   onSelectDevise(d : Devise){
-     this.selectedDevise=d;
+     this.sSelectedDevise.set(d);
      this.deviseTemp=this.cloneDevise(d);
   }
 
   onUpdate(){
-    if(this.selectedDevise==undefined) return;
-    this.selectedDevise.change = this.deviseTemp.change;
-    //...
-    
+    if(this.sSelectedDevise()==undefined) return;
+        this.updateArrayAndSelectionWithSignal(this.deviseTemp);
   }
+
+  //NB: this sub function will be often called with d = this.deviseTemp 
+  updateArrayAndSelectionWithSignal(devise: Devise){
+    //1. find first item whose .id/.code is the d.code
+    let existingDevisesWithSearchedId = this.sTabDevises().filter(d => d.code == devise.code);//return a array or undefined
+    if(existingDevisesWithSearchedId){
+        let cDevise =  this.cloneDevise(devise);
+        this.sSelectedDevise.set(cDevise);//new selection
+        this.sTabDevises.set(this.sTabDevises().map( (d:Devise) => (d.code==devise.code)?cDevise : d) ); //replace new selected item
+    }
+}
 
   //à coder en TP:
   //onNew() , onAdd() , onDelete() , onUpdate(), onSelectDevise(d : Devise )

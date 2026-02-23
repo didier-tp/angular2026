@@ -5,8 +5,8 @@
        <div class="my-card-body">
        <table>
            <tr><th>code</th><th>name</th><th>change</th></tr>
-           @for(d of tabDevises ; track d.code){
-           <tr (click)="onSelectDevise(d)" [class.selected]="d==selectedDevise">
+           @for(d of sTabDevises() ; track d.code){
+           <tr (click)="onSelectDevise(d)" [class.selected]="d==selectedDevise()">
               <td>{{d.code}}</td><td>{{d.name}}</td><td>{{d.change}}</td>
            </tr>
            }

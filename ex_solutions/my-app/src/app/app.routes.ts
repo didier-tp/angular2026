@@ -29,7 +29,7 @@ export const routes: Routes = [
   },
   { path: 'ngr-conversion', component: ConversionComponent },
   { path: 'ngr-reservation', component: ReservationComponent },
-  { path: 'ngr-devise', component: DeviseComponent  , canActivate: [authGuard]},
+  { path: 'ngr-devise', component: DeviseComponent /* , canActivate: [authGuard]*/},
   { path: 'ngr-animations', component: AnimationsComponent },
   { path : "ngr-not-authorized" , component : NotAuthorizedComponent },
   { path: '**', redirectTo: '/ngr-welcome', pathMatch: 'full'}
