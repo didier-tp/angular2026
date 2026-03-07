@@ -8,4 +8,3 @@ https://www.sfeir.dev/front/angular-21-explique-un-guide-complet-pour-adopter-si
 
 ====
 LinkedSignal:
-https://medium.com/@g.buchet/comment-linkedsignal-rend-les-signaux-dangular-encore-meilleurs-408c53318caf
