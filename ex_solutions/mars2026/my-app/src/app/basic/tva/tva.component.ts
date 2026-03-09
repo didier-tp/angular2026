@@ -1,5 +1,5 @@
 import { DecimalPipe } from '@angular/common';
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, Signal, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ToFixedPipe } from '../../common/pipe/to-fixed-pipe';
 
@@ -10,8 +10,12 @@ import { ToFixedPipe } from '../../common/pipe/to-fixed-pipe';
   styleUrl: './tva.component.css',
 })
 export class TvaComponent {
-  ht = signal (0);
+  //ht = signal (0);
+  ht = signal<number>(0);
+  // ht : Signal<number> = signal(0); possible mais pas conseillé !!!
+
   taux = signal(20);//en % , 20% par defaut
+  
   listeTaux = [5, 10, 20]; //en %
   tva = computed (()=>this.ht() * this.taux() / 100);
   ttc = computed (()=>this.ht() + this.tva());

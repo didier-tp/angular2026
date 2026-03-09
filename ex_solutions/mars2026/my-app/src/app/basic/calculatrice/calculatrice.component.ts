@@ -1,31 +1,39 @@
-import { Component } from '@angular/core';
+import { JsonPipe } from '@angular/common';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-calculatrice',
-  imports: [FormsModule],
+  imports: [FormsModule , JsonPipe],
   templateUrl: './calculatrice.component.html',
   styleUrls: ['./calculatrice.component.css']
 })
 export class CalculatriceComponent {
   a: number = 0;
   b: number = 0;
-  res: number = 0;
+  //res: number = 0;
+  sRes = signal(0);
   montrerHisto: boolean = true;
-  historiqueCalculs: string[] = [];
+  sHistoriqueCalculs=signal<string[]>([]);
+
   onCalculer(op: string) {
     switch (op) {
       case "+":
-        this.res = Number(this.a) + Number(this.b); break;
+       // this.res = Number(this.a) + Number(this.b); break;
+        this.sRes.set( Number(this.a) + Number(this.b)); break;
       case "-":
-        this.res = Number(this.a) - Number(this.b); break;
+       // this.res = Number(this.a) - Number(this.b); break;
+         this.sRes.set( this.a - this.b); break;
       case "*":
-        this.res = Number(this.a) * Number(this.b); break;
+       // this.res = Number(this.a) * Number(this.b); break;
+       this.sRes.set( this.a * this.b); break;
       default:
-        this.res = 0;
+        //this.res = 0;
+        this.sRes.set(0);
     }
-    this.historiqueCalculs.push(`${this.a} ${op} ${this.b} = ${this.res}`)
+    //this.historiqueCalculs.push(`${this.a} ${op} ${this.b} = ${this.res}`)
+    this.sHistoriqueCalculs().push(`${this.a} ${op} ${this.b} = ${this.sRes()}`)  //ok ou pas ok selon contexte
   }
   //coordonnées relatives de la souris qui survole une div
   x: number = 0;
