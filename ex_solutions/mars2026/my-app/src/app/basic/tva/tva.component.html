@@ -8,8 +8,8 @@
         </select><br/>
     <!-- <button (click)="onCalculerTvaEtTtc()">calculer tva et ttc</button><br/> -->
      @if(tva>0){
-    <label>tva=</label><span>{{tva}}</span><br/>
-    <label>ttc=</label><span>{{ttc}}</span>
+    <label>tva=</label><span>{{tva | toFixed:2}}</span><br/> <!-- {{tva | number:'1.0-2'}} -->
+    <label>ttc=</label><span>{{ttc | toFixed:2}}</span>
      }
      <hr/>
      <ul>

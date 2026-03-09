@@ -1,9 +1,11 @@
+import { DecimalPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ToFixedPipe } from '../../common/pipe/to-fixed-pipe';
 
 @Component({
   selector: 'app-tva',
-  imports: [FormsModule],
+  imports: [FormsModule , DecimalPipe , ToFixedPipe],
   templateUrl: './tva.component.html',
   styleUrl: './tva.component.css',
 })
@@ -18,6 +20,11 @@ export class TvaComponent {
     this.tva = this.ht * this.taux / 100;
     this.ttc = this.ht + this.tva;
   }
+
+
+
+
+
 
   mapTauxCategorieProd = new Map<number, string[]>();
   tauxSel: number | undefined = undefined; //taux sélectionné
