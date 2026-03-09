@@ -8,14 +8,29 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './tva.component.css',
 })
 export class TvaComponent {
-    ht = 0;  
-    taux = 20;//en % , 20% par defaut
-    listeTaux=[5,10,20]; //en %
-    tva = 0;
-    ttc = 0;
+  ht = 0;
+  taux = 20;//en % , 20% par defaut
+  listeTaux = [5, 10, 20]; //en %
+  tva = 0;
+  ttc = 0;
 
-    onCalculerTvaEtTtc(){
-      this.tva=this.ht * this.taux / 100;
-      this.ttc = this.ht + this.tva;
-    }
+  onCalculerTvaEtTtc() {
+    this.tva = this.ht * this.taux / 100;
+    this.ttc = this.ht + this.tva;
+  }
+
+  mapTauxCategorieProd = new Map<number, string[]>();
+  tauxSel: number | undefined = undefined; //taux sélectionné
+  listeCategoriePourTauxSel : string[]= [];
+  constructor() {
+    this.mapTauxCategorieProd.set(20, ["services", "outils", "objets"]);
+    this.mapTauxCategorieProd.set(10, ["transports", "hotels", "restaurants", "spectacles", "médicaments"]);
+    this.mapTauxCategorieProd.set(5, ["aliments", "énergies", "livres"]);
+  }
+
+  onSelectTaux(t:number){
+    this.tauxSel = t;
+    this.listeCategoriePourTauxSel=this.mapTauxCategorieProd.get(this.tauxSel)??[]
+
+  }
 }

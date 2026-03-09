@@ -11,4 +11,13 @@
     <label>tva=</label><span>{{tva}}</span><br/>
     <label>ttc=</label><span>{{ttc}}</span>
      }
+     <hr/>
+     <ul>
+        @for(t of listeTaux; track t){
+            <li (click)="onSelectTaux(t)" [class.selected]="t==tauxSel">{{t}}%</li>
+        }
+     </ul>
+     @for(c of listeCategoriePourTauxSel; track c){
+          <span class="selected">{{c}}</span> &nbsp;
+     }
 </div>
