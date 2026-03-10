@@ -7,6 +7,7 @@
    <app-tva></app-tva> <!-- vu comme ng-content dans toggle-panel....html -->
 </app-toggle-panel>
 
+<!-- v1 avec output -->
 <!--
 <app-simple-selector
 title="choix couleur"
@@ -14,11 +15,14 @@ title="choix couleur"
 (choix)="onChoixCouleur($event)"></app-simple-selector>
 -->
 
+<!-- v2 avec model -->
+ 
 <app-simple-selector
 title="choix couleur"
 [values]="[ 'red' ,'green','blue' ]"
 [(choix)]="couleurChoisie"></app-simple-selector>
  <br/>
+  
 couleurChoisie = {{couleurChoisie}}
 
 <app-mutable></app-mutable>

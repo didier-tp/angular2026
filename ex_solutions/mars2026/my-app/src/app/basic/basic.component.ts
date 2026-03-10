@@ -14,7 +14,7 @@ import { TogglePanelComponent } from '../common/component/toggle-panel/toggle-pa
   styleUrl: './basic.component.css',
 })
 export class BasicComponent {
-    couleurChoisie="blue";
+    couleurChoisie="red";
 
     //utile que pour v1:
     onChoixCouleur(nouveauChoix: string){
