@@ -34,8 +34,8 @@ export class MutableComponent {
    onIncrementCounter(){
     this.sCounter.set(this.sCounter()+1);
     console.log("new sCounter value="+ JSON.stringify(this.sCounter()))
-    this.sListe2().push(this.sCounter()); //modification même instance MUTABLE du tableau , le signal n'a pas changé de valeur
-    //this.sListe2.set([...this.sListe2(),this.sCounter()]); //nouveau tableau , signal change de valeur
+    //this.sListe2().push(this.sCounter()); //modification même instance MUTABLE du tableau , le signal n'a pas changé de valeur
+    this.sListe2.set([...this.sListe2(),this.sCounter()]); //nouveau tableau , signal change de valeur
    }
 
    onIncrementCounterV2(){
