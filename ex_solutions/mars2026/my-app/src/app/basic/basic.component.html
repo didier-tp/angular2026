@@ -1,6 +1,6 @@
 <p>basic works!</p>
 
-<app-toggle-panel title="calculatrice">
+<app-toggle-panel title="calculatrice" [(panelOpenState)]="panelCalculatriceOpenState">
    <app-calculatrice></app-calculatrice> <!-- ou ... , vu comme ng-content dans toggle-panel -->
 </app-toggle-panel>
 <app-toggle-panel title="calcul tva">

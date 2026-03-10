@@ -15,7 +15,7 @@ import { TogglePanelComponent } from '../common/component/toggle-panel/toggle-pa
 })
 export class BasicComponent {
     couleurChoisie="red";
-
+    panelCalculatriceOpenState=false;
     //utile que pour v1:
     onChoixCouleur(nouveauChoix: string){
       this.couleurChoisie=nouveauChoix;
