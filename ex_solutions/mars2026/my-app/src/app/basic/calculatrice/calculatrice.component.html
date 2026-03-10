@@ -1,14 +1,14 @@
 <div class="c1">
     <h3>calculatrice angular</h3>
-    <label>a :</label> <input type="number" [(ngModel)]="a" /> <br />
-    <label>b :</label> <input type="number" [(ngModel)]="b" /> <br />
+    <label>a :</label> <input type="number" [(ngModel)]="a" name="a" /> <br />
+    <label>b :</label> <input type="number" [(ngModel)]="b" name="b" /> <br />
     <label>operation :</label>
     <input type="button" value="+" (click)="onCalculer('+')" />
     &nbsp; <input type="button" value="-" (click)="onCalculer('-')" />
     &nbsp; <input type="button" value="*" (click)="onCalculer('*')" />
     <br />
     <label>resultat:</label>
-    <span [style.font-weight]="sRes()>0?'bold':'normal'" [class.negatif]="sRes()<0">
+    <span [style.font-weight]="sRes()>0?'bold':'normal'" [class.negatif]="sRes()<0" id="spanRes">
         {{sRes()}}</span> <br />
     <input type="checkbox" [(ngModel)]="montrerHisto" /> voir l'historique des calculs<br />
     <!-- Historique: {{ sHistoriqueCalculs() | json}} -->

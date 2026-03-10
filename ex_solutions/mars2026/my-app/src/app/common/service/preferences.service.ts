@@ -26,7 +26,7 @@ export class PreferencesService {
   }
   constructor() {
 
-    setInterval ( ()=> { this.incrementerCompteur(); } , 1000); //déclenchement automatique d'un traitement toutes les 1000ms 
+    setInterval ( ()=> { this.incrementerCompteur(); } , 30000); //déclenchement automatique d'un traitement toutes les 30000ms 
 
     //let c :string | null = this.myStorageUtilService.getItemInLocalStorage('preferences.couleurFond');
     let c = localStorage.getItem('preferences.couleurFond');
