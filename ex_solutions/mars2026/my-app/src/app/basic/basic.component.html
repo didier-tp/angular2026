@@ -1,4 +1,19 @@
 <p>basic works!</p>
 <app-calculatrice></app-calculatrice>
 <app-tva></app-tva>
+
+<!--
+<app-simple-selector
+title="choix couleur"
+[values]="[ 'red' ,'green','blue' ]"
+(choix)="onChoixCouleur($event)"></app-simple-selector>
+-->
+
+<app-simple-selector
+title="choix couleur"
+[values]="[ 'red' ,'green','blue' ]"
+[(choix)]="couleurChoisie"></app-simple-selector>
+ <br/>
+couleurChoisie = {{couleurChoisie}}
+
 <app-mutable></app-mutable>

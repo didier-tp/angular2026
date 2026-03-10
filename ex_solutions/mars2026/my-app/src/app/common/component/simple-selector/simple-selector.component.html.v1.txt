@@ -1,0 +1,6 @@
+<p>simple-selector {{title()}}</p>
+<ul>
+@for(v of values(); track v){
+    <li [class.selected]="v==selection" (click)="onSelect(v)">{{v}}</li>
+}
+</ul>
