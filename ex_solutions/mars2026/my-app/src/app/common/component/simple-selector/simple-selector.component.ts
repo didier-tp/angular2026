@@ -12,8 +12,12 @@ export class SimpleSelectorComponent {
     //choix=output<string>(); // v1
     choix=model(""); //v2 
 
-    //selection="";//v1
-    selection=this.choix();//v2
+    selection="";//v1
+
+    ngOnInit(){
+      this.selection=this.choix(); //v2
+    }
+    
 
     onSelect(val:string){
       this.selection=val;
