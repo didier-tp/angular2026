@@ -8,8 +8,7 @@
     &nbsp; <input type="button" value="*" (click)="onCalculer('*')" [hidden]="modeChoisi=='simple'" />
     <br />
     <label>resultat:</label>
-    <span [style.font-weight]="sRes()>0?'bold':'normal'" [class.negatif]="sRes()<0" id="spanRes">
-        {{sRes()}}</span> <br />
+    <span [style.font-weight]="sRes()>0?'bold':'normal'" [class.negatif]="sRes()<0" id="spanRes">{{sRes()}}</span> <br />
     <input type="checkbox" [(ngModel)]="montrerHisto" /> voir l'historique des calculs<br />
     <!-- Historique: {{ sHistoriqueCalculs() | json}} -->
     

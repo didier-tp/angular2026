@@ -29,5 +29,9 @@
     {
       "path": "./tsconfig.spec.json"
     }
-  ]
+  ],
+"exclude": [
+"cypress.config.ts",
+"cypress/**/*.ts"
+]
 }

@@ -38,6 +38,7 @@
     "@angular/compiler-cli": "^21.1.0",
     "@playwright/test": "^1.58.2",
     "@types/node": "^25.4.0",
+    "cypress": "^15.11.0",
     "jsdom": "^27.1.0",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"
