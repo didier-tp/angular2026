@@ -18,7 +18,7 @@ export const routes: Routes = [
         children: [
             { path: 'tva', component: TvaComponent },
             { path: 'calculatrice/:mode', component: CalculatriceComponent },
-            { path: '', redirectTo: 'tva', pathMatch: 'prefix' }
+            { path: '', redirectTo: 'calculatrice/simple', pathMatch: 'prefix' }
         ]
     },
     { path: 'ngr-conversion', component: ConversionComponent },

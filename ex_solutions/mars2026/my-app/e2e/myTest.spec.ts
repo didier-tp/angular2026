@@ -8,7 +8,6 @@ test('good soustraction', async ({page}) => {
 	//partir de index.html
 	await page.goto("http://localhost:4200/ngr-basic");
 	
-	
 	// Get an input, type data into it 
 	//and verify that the value has been updated
 	 await page.fill('input[name="a"]','9');
