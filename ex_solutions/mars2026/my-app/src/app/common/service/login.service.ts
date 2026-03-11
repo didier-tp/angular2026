@@ -15,6 +15,5 @@ export class LoginService {
   public postLogin$(login: Login): Observable<LoginResponse>{
     let url = this._apiBaseUrl + "/public/auth";
     return this.http.post<LoginResponse>(url,login);
-
   }
 }
