@@ -1,7 +1,8 @@
 import { DecimalPipe } from '@angular/common';
-import { Component, computed, Signal, signal } from '@angular/core';
+import { Component, computed, inject, Signal, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ToFixedPipe } from '../../common/pipe/to-fixed-pipe';
+import { TvaService } from '../../common/service/tva.service';
 
 @Component({
   selector: 'app-tva',
@@ -10,6 +11,8 @@ import { ToFixedPipe } from '../../common/pipe/to-fixed-pipe';
   styleUrl: './tva.component.css',
 })
 export class TvaComponent {
+  tvaService = inject(TvaService)
+
   //ht = signal (0);
   ht = signal<number>(0);
   // ht : Signal<number> = signal(0); possible mais pas conseillé !!!
@@ -17,8 +20,8 @@ export class TvaComponent {
   taux = signal(20);//en % , 20% par defaut
   
   listeTaux = [5, 10, 20]; //en %
-  tva = computed (()=>this.ht() * this.taux() / 100);
-  ttc = computed (()=>this.ht() + this.tva());
+  tva = computed(()=>this.tvaService.tva(this.ht(), this.taux()))
+  ttc =computed(()=> this.tvaService.ttc(this.ht(), this.taux()));
 
 
   mapTauxCategorieProd = new Map<number, string[]>();
