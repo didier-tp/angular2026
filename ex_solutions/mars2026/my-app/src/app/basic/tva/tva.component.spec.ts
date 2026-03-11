@@ -70,7 +70,7 @@ describe('TvaComponent', () => {
     expect(component.ttc()).toBeCloseTo(220, 2);
     //Vérifications importantes des valeurs calculées dans la vue (template html):
     let spanTtcElt = compNativeElt.querySelector('#spanTtc');
-    console.log("from IHM, res:" + spanTtcElt.textContent);
+    console.log("from IHM, res:" + spanTtcElt.textContext);
     expect(Number(spanTtcElt.textContent)).toBeCloseTo(220, 2);
   });
 
