@@ -9,8 +9,8 @@
 
      <div class="f-form-group-wrap">
         <label class="f-align">password:</label>
-        <div class="f-align">
-         <input type="password" [(ngModel)]="login.password" name="password" required minlength="3" class="f-max-size"/>
+        <div class="f-align"> <!-- type="password" -->
+         <input  [(ngModel)]="login.password" name="password" required minlength="3" class="f-max-size"/>
      </div> 
     </div>
 
@@ -23,4 +23,4 @@
 
     <input type="button" value="login" (click)="onLogin()" [disabled]="!formLogin.form.valid" /> <br/>
 </form>
-message: {{message}}
+message: <span [style.color]="ok()?'green':'red'">{{message()}}</span>
