@@ -26,6 +26,7 @@ export class LoginComponent {
     this.loginService.postLogin$(this.login).subscribe({
       next: (loginResponse)=>{ this.message.set(loginResponse.message);
                                this.ok.set(loginResponse.status);
+                               sessionStorage.setItem('access_token',loginResponse.token??"");
                                /*this.message = loginResponse.message;
                                this.changeDetectorRef.markForCheck();*/
       },

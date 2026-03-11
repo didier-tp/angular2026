@@ -18,7 +18,7 @@ export interface ConvertRes {
 })
 export class DeviseService {
   //private _apiBaseUrl = "https://www.d-defrance.fr/tp/devise-api/v1";
-   private _apiBaseUrl = "tp/devise-api/v1";  //via --proxy-conf ... en phase de dev avec ng serve
+  private _apiBaseUrl = "tp/devise-api/v1";  //via --proxy-conf ... en phase de dev avec ng serve
 
   private _http = inject(HttpClient);
 
@@ -26,6 +26,17 @@ export class DeviseService {
     let url = this._apiBaseUrl + "/public/devises";
     console.log("url = " + url);
     return this._http.get<Devise[]>(url);
+  }
+
+  public getDeviseByCode$(code: string): Observable<Devise> {
+    let url = `${this._apiBaseUrl}/public/devises/${code}`;
+    console.log("url = " + url);
+    return this._http.get<Devise>(url);
+  }
+
+  public putDevise$(d: Devise): Observable<Devise> { //const url = `${this.publicOrPrivateBaseUrl}/devises/${d.code}?v=true`;
+    const url = `${this._apiBaseUrl}/private/devises/${d.code}?v=true`;
+    return this._http.put<Devise>(url, d /*input envoyé au serveur*/);
   }
 
   public convertir$(montant: number,
