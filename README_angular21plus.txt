@@ -1,4 +1,4 @@
-depuis angular 19 , standalone : true par défaut , signaux stabilisés
+depuis angular 19 , standalone : true par défaut , signaux stabilisés ***
 depuis angular 21 , plus de ZoneJs par défaut et donc besoin de signaux presque partout
                     Signal Forms expérimentaux
                     preview pour composants "Aria"
