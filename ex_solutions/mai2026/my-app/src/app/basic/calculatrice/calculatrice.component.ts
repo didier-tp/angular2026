@@ -15,7 +15,8 @@ export class CalculatriceComponent {
   onCalculer(op:string){
        switch(op){
          case "+" :
-            this.res = Number(this.a) + Number(this.b);  break;
+           // this.res = Number(this.a) + Number(this.b);  break;
+           this.res = this.a + this.b;  break;
         case "-" :
               this.res = Number(this.a)- Number(this.b);  break;
         case "*" :
