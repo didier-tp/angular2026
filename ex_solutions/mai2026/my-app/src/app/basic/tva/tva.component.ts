@@ -13,6 +13,8 @@ export class TvaComponent {
   tva=0;
   ttc=0;
 
+  tauxPossibles = [ 5 , 10, 20];
+
   onCalculerTvaEtTtc(){
     this.tva = this.ht * this.taux / 100;
     this.ttc = this.tva + this.ht;
