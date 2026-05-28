@@ -1,7 +1,10 @@
-<app-header></app-header>
-<p> Welcome to {{title()}} </p>
-<!-- <app-basic></app-basic> -->
+<!-- <app-header></app-header> -->
+<!-- <app-header titre="titreXyz"></app-header> -->
+<app-header [titre]="title()"></app-header> <!-- avec title en version signal dans App.ts -->
 
+<!-- <p> Welcome to {{title()}} </p> -->
+
+<!-- <app-basic></app-basic> -->
  <router-outlet></router-outlet>  <!-- affichera basic ou welcome ou .... -->
 
 <app-footer></app-footer>
