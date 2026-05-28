@@ -1,13 +1,20 @@
 <h3>login</h3>
-<form #formLogin="ngForm">
-    <label>username:</label>
-    <input [(ngModel)]="login.username" name="username" required  pattern="^[a-zA-Z].+" />  <br/>
-    <label>password:</label>
-    <input [(ngModel)]="login.password" name="password" required minlength="3" />   
-    <br/>
-    <label>roles:</label>
-    <input [(ngModel)]="login.roles" name="roles" required />   
-    <br/>
+<form #formLogin="ngForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <div>
+    <label  class="block text-sm">username:</label>
+    <input  class="w-full" [(ngModel)]="login.username" name="username" required  pattern="^[a-zA-Z].+" /> 
+     <span class="text-red-600"></span>
+  </div>
+  <div>
+    <label class="block text-sm">password:</label>
+    <input  class="w-full" [(ngModel)]="login.password" name="password" required minlength="3" />   
+    <span class="text-red-600"></span>
+ </div>
+   <div>
+    <label class="block text-sm">roles:</label>
+    <input  class="w-full" [(ngModel)]="login.roles" name="roles" required />   
+    <span class="text-red-600"></span>
+ </div>
 </form>
 <input type="button" value="login" (click)="onLogin()" [disabled]="!formLogin.form.valid" />   <br/>
 message: {{message}}
