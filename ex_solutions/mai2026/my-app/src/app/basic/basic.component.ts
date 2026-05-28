@@ -12,7 +12,7 @@ import {MatTabsModule} from '@angular/material/tabs';
   styleUrl: './basic.component.css',
 })
 export class BasicComponent {
-    couleurChoisie="?";
+    couleurChoisie="green"; //par défaut
     onChoixCouleur(choix:string){
       this.couleurChoisie=choix; //event value
     }

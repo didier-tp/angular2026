@@ -17,7 +17,9 @@
 <app-simple-selector 
  title="choix couleur" 
 [values]="[ 'red' ,'green','blue' ]"
- (choix)="onChoixCouleur($event)"></app-simple-selector> <br/>
+ [(choix)]="couleurChoisie"></app-simple-selector> <br/>
+<!-- v1:  (choix)="onChoixCouleur($event)" -->
+
 couleurChoisie = {{couleurChoisie}}
 
 <mat-tab-group>

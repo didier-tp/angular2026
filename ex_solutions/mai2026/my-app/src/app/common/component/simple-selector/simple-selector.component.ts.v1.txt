@@ -1,4 +1,4 @@
-import { Component, input, model, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -11,25 +11,11 @@ export class SimpleSelectorComponent {
     title = input("selector");
 
     values = input<string[]>([]);  //valeurs possibles (à choisir)
-    //v1: choix = output<string>(); //évenement choix effectué
-    choix=model(""); //v2 
+    choix = output<string>(); //évenement choix effectué
 
     sel:string=""; //sélection interne
 
-    //ngOnInit() ou ngOnChanges(changes: SimpleChanges)
-    ngOnInit(){
-      this.sel=this.choix(); //v2
-    }
-
-    /*
-    //V1:
     onSelection(){
         this.choix.emit(this.sel);
-    }
-    */
-
-     onSelect(val:string){
-      this.sel=val;
-      this.choix.set(val); //v2
     }
 }

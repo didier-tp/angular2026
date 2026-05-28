@@ -1,9 +1,9 @@
 <div class="c1">
     <p>{{title()}}</p>
-    <select [(ngModel)]="sel" (change)="onSelection()">
+   <ul>
         @for(v of values(); track v){
-        <option>{{v}}</option>
+            <li [class.selected]="v==sel" (click)="onSelect(v)">{{v}}</li>
         }
-   </select>
+</ul>
 </div>
 
