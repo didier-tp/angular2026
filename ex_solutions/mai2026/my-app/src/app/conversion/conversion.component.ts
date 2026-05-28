@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { Devise } from '../common/data/devise';
 import { DeviseService } from '../common/service/devise.service';
 import { FormsModule } from '@angular/forms';
@@ -10,6 +10,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './conversion.component.css',
 })
 export class ConversionComponent {
+
+  private changeDetectorRef = inject(ChangeDetectorRef);
+
   montant: number = 0;
   codeDeviseSource: string = "?";
   codeDeviseCible: string = "?";
@@ -27,6 +30,7 @@ export class ConversionComponent {
         next
           : (res: number) => {
             this.montantConverti = res;
+            this.changeDetectorRef.markForCheck();
             console.log("resultat obtenu en différé")
           },
         error: (err) => { console.log("error:" + err) }
@@ -47,7 +51,7 @@ export class ConversionComponent {
   ngOnInit() {
     this._deviseService.getAllDevises$()
       .subscribe({
-        next: (tabDev: Devise[]) => { this.initListeDevises(tabDev); },
+        next: (tabDev: Devise[]) => { this.initListeDevises(tabDev); this.changeDetectorRef.markForCheck();},
         error: (err) => { console.log("error:" + err) }
       });
   }
