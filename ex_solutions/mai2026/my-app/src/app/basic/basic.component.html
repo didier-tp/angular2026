@@ -14,4 +14,10 @@
     <app-tva></app-tva>
 </app-toggle-panel>
 
+<app-simple-selector 
+ title="choix couleur" 
+[values]="[ 'red' ,'green','blue' ]"
+ (choix)="onChoixCouleur($event)"></app-simple-selector> <br/>
+couleurChoisie = {{couleurChoisie}}
+
 
