@@ -1,6 +1,9 @@
-<p>{{title()}}</p>
-<select [(ngModel)]="sel" (change)="onSelection()">
-    @for(v of values(); track v){
-    <option>{{v}}</option>
-    }
-</select>
+<div class="c1">
+    <p>{{title()}}</p>
+    <select [(ngModel)]="sel" (change)="onSelection()">
+        @for(v of values(); track v){
+        <option>{{v}}</option>
+        }
+   </select>
+</div>
+
