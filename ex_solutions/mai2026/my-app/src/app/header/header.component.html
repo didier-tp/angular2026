@@ -1,4 +1,5 @@
-<div class="entete">{{titre()}} -
+<div class="entete"
+ [style.background-color]="preferencesService.couleurFondPreferee">{{titre()}} -
   <a routerLink='/ngr-welcome' routerLinkActive="activeClass"> welcome</a> &nbsp;
   <a routerLink='/ngr-basic' routerLinkActive="activeClass"> basic</a> &nbsp;
   <a routerLink='/ngr-login' routerLinkActive="activeClass"> login</a> &nbsp;
