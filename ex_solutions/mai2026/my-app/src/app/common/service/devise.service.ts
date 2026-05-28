@@ -3,6 +3,7 @@ import { Observable, of, delay, throwError, map } from 'rxjs';
 import { Devise } from '../data/devise';
 import { HttpClient } from '@angular/common/http';
 
+
 export interface ConvertRes {
  source :string; //ex: "EUR",
  target :string; //ex: "USD",
@@ -10,11 +11,17 @@ export interface ConvertRes {
  result :number; //ex: 217.3913
 };
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class DeviseService {
-  private _apiBaseUrl ="https://www.d-defrance.fr/tp/devise-api/v1"; 
+  //private _apiBaseUrl ="https://www.d-defrance.fr/tp/devise-api/v1"; 
+
+  private _apiBaseUrl ="tp/devise-api/v1"; 
+ // with prefix in proxy.conf.json 
+ // (ng serve --proxy-config proxy.conf.json)
+ // or other config in production mode
 
   //constructor(private _http : HttpClient){}
   private _http = inject(HttpClient);
