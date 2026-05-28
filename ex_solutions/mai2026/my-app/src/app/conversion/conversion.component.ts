@@ -19,7 +19,8 @@ export class ConversionComponent {
   montantConverti: number = 0;
   listeDevises: Devise[] = []; //à choisir dans liste déroulante.
 
-  constructor(private _deviseService: DeviseService) { }
+  //constructor(private _deviseService: DeviseService) { }
+   _deviseService=inject(DeviseService);
 
   onConvertir() {
     console.log("debut de onConvertir")
@@ -49,10 +50,9 @@ export class ConversionComponent {
   }
 
   ngOnInit() {
-    this._deviseService.getAllDevises$()
-      .subscribe({
-        next: (tabDev: Devise[]) => { this.initListeDevises(tabDev); this.changeDetectorRef.markForCheck();},
-        error: (err) => { console.log("error:" + err) }
-      });
+    this._deviseService.getAllDevises$().subscribe({
+      next:(tabDev: Devise[])=>{this.initListeDevises(tabDev); this.changeDetectorRef.markForCheck();},
+      error: (err) => { console.log("error:" + err) }
+    })
   }
 }
