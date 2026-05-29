@@ -17,4 +17,4 @@
  </div>
 </form>
 <input type="button" value="login" (click)="onLogin()" [disabled]="!formLogin.form.valid" />   <br/>
-message: {{message}}
+message: <span [style.color]="ok?'green':'red'">{{message}}</span>

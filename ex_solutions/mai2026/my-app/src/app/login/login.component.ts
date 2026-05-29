@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { Login } from '../common/data/login';
 import { FormsModule } from '@angular/forms';
+import { LoginService } from '../common/service/login.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,21 @@ import { FormsModule } from '@angular/forms';
 export class LoginComponent {
   public login : Login = new Login();
   public message /* :string */ ="";
+  public ok=true;
+
+  loginService = inject(LoginService);
+  changeDetectorRef = inject(ChangeDetectorRef);
+
   public onLogin(){
-        this.message = "donnees saisies = " + JSON.stringify(this.login);
+        //this.message = "donnees saisies = " + JSON.stringify(this.login);
+
+        this.loginService.postLogin$(this.login).subscribe({
+          next: (loginResponse)=>{ 
+            this.message = loginResponse.message;
+            this.ok=loginResponse.status;
+            this.changeDetectorRef.markForCheck();
+          },
+          error:(err)=>{console.log(err)}
+        })
   }
 }
