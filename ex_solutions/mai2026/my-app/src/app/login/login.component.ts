@@ -23,6 +23,7 @@ export class LoginComponent {
 
         this.loginService.postLogin$(this.login).subscribe({
           next: (loginResponse)=>{ 
+            console.log("loginResponse = " + JSON.stringify(loginResponse));
             this.message = loginResponse.message;
             this.ok=loginResponse.status;
             this.changeDetectorRef.markForCheck();
