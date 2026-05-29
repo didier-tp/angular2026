@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { Login } from '../common/data/login';
 import { FormsModule } from '@angular/forms';
 import { LoginService } from '../common/service/login.service';
+import { messageFromError } from '../common/component/util/util';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,11 @@ export class LoginComponent {
             this.ok=loginResponse.status;
             this.changeDetectorRef.markForCheck();
           },
-          error:(err)=>{console.log(err)}
+          error:(err)=>{console.log(err); 
+            this.message= messageFromError(err,"echec login");
+            this.ok=false;
+            this.changeDetectorRef.markForCheck();
+          }
         })
   }
 }
