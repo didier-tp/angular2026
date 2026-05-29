@@ -45,4 +45,16 @@ export class DeviseService {
               map( (res:ConvertRes) => res.result)
             );
   }
+
+public getDeviseByCode$(code :string ) : Observable<Devise>{
+    let url = `${this._apiBaseUrl}/public/devises/${code}` ;
+    console.log( "url = " + url);
+    return this._http.get<Devise>(url);
+  }
+  putDevise$(d :Devise): Observable<Devise>{
+    //const url = `${this.publicOrPrivateBaseUrl}/devises/${d.code}?v=true`;
+    const url = `${this._apiBaseUrl}/private/devises/${d.code}?v=true`; 
+    return this._http.put<Devise>(url,d /*input envoyé au serveur*/);
+  }
+
 }
