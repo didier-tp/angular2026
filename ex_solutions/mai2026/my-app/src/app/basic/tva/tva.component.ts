@@ -1,7 +1,8 @@
 import { DecimalPipe } from '@angular/common';
-import { Component, computed, effect, signal } from '@angular/core';
+import { Component, computed, effect, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ToFixedPipe } from '../../common/pipe/to-fixed-pipe';
+import { TvaService } from '../../common/service/tva.service';
 
 @Component({
   selector: 'app-tva',
@@ -12,8 +13,15 @@ import { ToFixedPipe } from '../../common/pipe/to-fixed-pipe';
 export class TvaComponent {
   ht = signal(0);
   taux=signal(20); //en %
+  tvaService = inject(TvaService);
+
+  /*
   tva=computed(()=>this.ht() * this.taux() / 100 );
   ttc=computed(()=>this.ht() + this.tva() );
+  */
+
+tva = computed(()=>this.tvaService.tva(this.ht(), this.taux()))
+ttc =computed(()=> this.tvaService.ttc(this.ht(), this.taux()));
 
   tauxPossibles = [ 5 , 10, 20];
 
