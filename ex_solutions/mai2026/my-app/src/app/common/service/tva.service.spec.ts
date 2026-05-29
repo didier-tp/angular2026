@@ -17,6 +17,9 @@ describe('TvaService', () => {
    it('tva(200,20)==40', () => {
     expect(service.tva(200,20)).toBe(40);
   });
+
+   //it() signifie "it should behave like that"
+   //test() idem depuis angular 21 et vitest
    it('ttc(200,20)==240', () => {
     expect(service.ttc(200,20)).toBe(240);
   });
