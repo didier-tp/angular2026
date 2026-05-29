@@ -1,11 +1,17 @@
 <p>basic works!</p>
 
+ <a routerLink="/ngr-basic/calculatrice" >calculatrice</a><br/>
+ <a routerLink="/ngr-basic/tva" >tva</a><br/>
+ <router-outlet></router-outlet>
+
 <!--
 <app-calculatrice></app-calculatrice>
 <app-tva></app-tva>
 -->
 
 <!-- [panelOpenState]="true" pour "paneau/développé (contenu montré)" dès le départ-->
+
+<!--
 <app-toggle-panel title="calculatrice" [panelOpenState]="true">
     <app-calculatrice></app-calculatrice>
 </app-toggle-panel>
@@ -13,7 +19,7 @@
 <app-toggle-panel title="tva">
     <app-tva></app-tva>
 </app-toggle-panel>
-
+-->
 <app-simple-selector 
  title="choix couleur" 
 [values]="[ 'red' ,'green','blue' ]"
@@ -22,6 +28,7 @@
 
 couleurChoisie = {{couleurChoisie}}
 
+<!--
 <mat-tab-group>
  <mat-tab label="calculatrice">
           <app-calculatrice></app-calculatrice>
@@ -30,4 +37,5 @@ couleurChoisie = {{couleurChoisie}}
          <app-tva></app-tva>
    </mat-tab>
 </mat-tab-group>
+-->
 

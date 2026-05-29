@@ -4,10 +4,11 @@ import { CalculatriceComponent } from './calculatrice/calculatrice.component';
 import { TogglePanelComponent } from '../common/component/toggle-panel/toggle-panel.component';
 import { SimpleSelectorComponent } from '../common/component/simple-selector/simple-selector.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-basic',
-  imports: [TvaComponent,CalculatriceComponent,TogglePanelComponent,SimpleSelectorComponent,MatTabsModule],
+  imports: [RouterLink , RouterOutlet,TvaComponent,CalculatriceComponent,TogglePanelComponent,SimpleSelectorComponent,MatTabsModule],
   templateUrl: './basic.component.html',
   styleUrl: './basic.component.css',
 })
