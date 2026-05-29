@@ -23,3 +23,7 @@ describe('TvaService', () => {
 
 
 });
+
+//à lancer via ng test 
+//ou
+//ng test --include=**/tva.service.spec.ts
