@@ -1,7 +1,8 @@
 <table>   
     <thead><tr><th>code</th><th>nom</th><th>change</th></tr></thead>
     <tbody>
-        @for(d of devises$ | async ; track  d.code){
+        @let devises = devises$ | async ;
+        @for(d of devises; track  d.code){
             <tr><td>{{d.code}}</td><td>{{d.name}}</td><td>{{d.change}}</td></tr>
         }
     </tbody>
