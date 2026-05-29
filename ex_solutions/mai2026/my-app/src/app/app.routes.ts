@@ -14,7 +14,7 @@ export const routes: Routes = [
     { path: 'ngr-login', component: LoginComponent },
     { path: 'ngr-basic', component: BasicComponent ,  children: [
              { path: 'tva', component: TvaComponent },
-             { path: 'calculatrice', component: CalculatriceComponent },
+             { path: 'calculatrice/:mode', component: CalculatriceComponent },
              { path: '', redirectTo: 'tva', pathMatch: 'prefix'}
        ]},
     { path: 'ngr-reservation', component:ReservationComponent},

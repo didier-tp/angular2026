@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Params } from '@angular/router';
 @Component({
   selector: 'app-calculatrice',
   imports: [FormsModule],
@@ -12,6 +13,8 @@ export class CalculatriceComponent {
   res : number = 0;
   montrerHisto : boolean = true;
   historiqueCalculs :string[] = [];
+   modeChoisi ="simple"; //ou "sophistiquee"
+
   onCalculer(op:string){
        switch(op){
          case "+" :
@@ -37,5 +40,12 @@ export class CalculatriceComponent {
   onMouseLeave(evt : MouseEvent){
     this.x=0; this.y=0;
   }
-  constructor() { }
-}
+
+  constructor(route : ActivatedRoute) {
+    //NB:  { path: 'calculatrice/:mode', ... },
+      route.params.subscribe(
+            (params:Params)=>   { this.modeChoisi = params['mode'];}
+      ) ;
+   }
+   
+  }

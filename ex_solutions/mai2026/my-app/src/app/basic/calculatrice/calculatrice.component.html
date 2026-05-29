@@ -5,7 +5,9 @@
     <label>operation :</label>
         <input type="button"  value="+" (click)="onCalculer('+')" /> 
         &nbsp; <input type="button"  value="-" (click)="onCalculer('-')" />
-        &nbsp; <input type="button"  value="*" (click)="onCalculer('*')" />
+        @if(modeChoisi=='sophistiquee'){
+           &nbsp; <input type="button"  value="*" (click)="onCalculer('*')" />
+        }
        <br/>
     <label>resultat:</label> 
     <span [style.font-weight]="res>0?'bold':'normal'"
