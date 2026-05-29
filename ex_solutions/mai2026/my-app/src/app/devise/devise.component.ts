@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Observable, firstValueFrom } from 'rxjs';
 import { Devise } from '../common/data/devise';
@@ -13,6 +13,9 @@ import { DeviseService } from '../common/service/devise.service';
 })
 export class DeviseComponent {
 private _deviseService =inject(DeviseService);
+changeDetectorRef = inject(ChangeDetectorRef);
+
+
 message=signal("");
 codeToUpdate="?";
 changeToUpdate=1;
@@ -34,6 +37,7 @@ async onUpdate() {
       await firstValueFrom(this._deviseService.putDevise$(deviseTemp));
       this.message.set("mise à jour ok");
       this.onRefresh(); 
+      this.changeDetectorRef.markForCheck();
     } catch (err) {  console.log(err);    this.message.set(<string> JSON.stringify(err));
     }
   }
