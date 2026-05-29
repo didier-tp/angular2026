@@ -26,6 +26,7 @@ export class LoginComponent {
             console.log("loginResponse = " + JSON.stringify(loginResponse));
             this.message = loginResponse.message;
             this.ok=loginResponse.status;
+            sessionStorage.setItem("access_token", loginResponse.token||"null");
             this.changeDetectorRef.markForCheck();
           },
           error:(err)=>{console.log(err); 
