@@ -9,9 +9,19 @@
     tva=<span id="spanTva">{{tva() | toFixed:2}}</span><br/>
     ttc=<span id="spanTtc">{{ttc() | toFixed:2}}</span> <br/>
 
-    age = {{age()}} <br/>
-    <button (click)="onIncrementAge()">++</button><br/>
+    <hr/>
+    <h4>tests temporaires</h4>
+    age = {{age()}}  &nbsp;
+    <button (click)="onIncrementAge()">++</button> &nbsp;
     <button (click)="onDecrementAge()">--</button><br/>
+    xy={{sXy()|json}} &nbsp; sTranformXy={{sTranformXy()|json}} <br/>
+    xy2={{sXy2()|json}}  <br/>
+     <button (click)="onUpdateXy()">update_xy</button> <br/>
+      newFirstName: <input [(ngModel)]="newFirstName"> &nbsp;
+    <button (click)="onUpdateFirstName()">update_firstName</button>&nbsp;
+    <button (click)="onUpdateUser()">update_user</button> <br/>
+    user: {{user()|json}} &nbsp; firstName: {{firstName()}}
+   
 </div>
 
 
