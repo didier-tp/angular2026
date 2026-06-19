@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class PreferencesService {
    //readonly myStorageUtilService = inject(MyStorageUtilService);
 
-  private _couleurFondPreferee :string ;
+  private _couleurFondPreferee :string = "lightgrey";
 
   public get couleurFondPreferee(){
     return this._couleurFondPreferee;
@@ -18,6 +18,7 @@ export class PreferencesService {
     localStorage.setItem('preferences.couleurFond',c);
     // this.myStorageUtilService.setItemInLocalStorage('preferences.couleurFond',c);
   }
+  
   
   constructor() { 
          //let c :string | null = this.myStorageUtilService.getItemInLocalStorage('preferences.couleurFond');
